@@ -13,16 +13,16 @@ terraform {
 
 variable "kubeconfig_path" {
   type    = string
-  default = "" 
+  default = "~/.kube/config" 
 }
 
 provider "kubernetes" {
-  config_path = var.kubeconfig_path != "" ? var.kubeconfig_path : null
+  config_path = var.kubeconfig_path
 }
 
 provider "helm" {
   kubernetes {
-    config_path = var.kubeconfig_path != "" ? var.kubeconfig_path : null
+    config_path = var.kubeconfig_path
   }
 }
 
