@@ -1,4 +1,4 @@
-name: CD - Terraform + Helm
+name: IAC - Terraform + Helm
 
 on:
   push:
