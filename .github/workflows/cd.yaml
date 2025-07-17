@@ -41,6 +41,7 @@ jobs:
         working-directory: ./terraform
         env:
           TF_VAR_kubeconfig_path: ${{ env.KUBECONFIG }}
+          KUBECONFIG: ${{ env.KUBECONFIG }}
         run: terraform apply -auto-approve
 
       - name: Verificar recursos no cluster
