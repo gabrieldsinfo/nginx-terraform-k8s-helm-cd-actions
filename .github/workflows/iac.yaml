@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  iac:
     runs-on: ubuntu-latest
 
     steps:
