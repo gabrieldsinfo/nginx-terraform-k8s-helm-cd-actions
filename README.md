@@ -51,4 +51,39 @@ Este projeto automatiza o deploy de uma aplicação Nginx em Kubernetes usando T
 - O serviço é exposto via tipo `ClusterIP`, acessível dentro do cluster.
 
 ---
+
+## Pré-requisitos
+
+Para rodar o projeto localmente (fora do GitHub Actions), você precisa:
+
+- [Docker](https://docs.docker.com/get-docker/) instalado.  
+- [Kind](https://kind.sigs.k8s.io/) para criar clusters Kubernetes locais.  
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/) para interagir com o cluster.  
+- [Terraform](https://www.terraform.io/downloads.html) instalado.  
+- [Helm](https://helm.sh/docs/intro/install/) instalado.
+
+---
+
+## Como usar (localmente)
+
+1. Crie o cluster Kind:  
+   kind create cluster
+
+2. Configure o `KUBECONFIG` para apontar para o cluster:  
+   export KUBECONFIG="$(kind get kubeconfig-path)"
+
+3. Execute o Terraform para provisionar namespace e deploy do Helm chart:  
+   terraform init  
+   terraform apply
+
+4. Verifique o deploy:  
+   kubectl get pods -n nginx-terraform  
+   kubectl get svc -n nginx-terraform
+
+---
+
+Se os pods estiverem em status `Running` e os serviços criados, seu deploy foi realizado com sucesso!  
+A partir daqui, você pode acessar sua aplicação via Kubernetes ou continuar evoluindo seu pipeline CI/CD.
+
+---
 > 📘 Projeto para fins de estudo e demonstração de boas práticas DevOps.
