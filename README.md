@@ -1,4 +1,4 @@
-# Projeto Nginx-Terraform-K8s-Helm-cd-Actions
+# Projeto Nginx-Terraform-K8s-Helm-CD-Actions
 
 Este projeto automatiza o deploy de uma aplicação Nginx em Kubernetes usando Terraform e Helm, executado inteiramente no GitHub Actions. Utiliza o Kind para criar um cluster Kubernetes temporário dentro do ambiente do GitHub runner.
 
