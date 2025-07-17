@@ -22,20 +22,6 @@ Este projeto automatiza o deploy de uma aplicação Nginx em Kubernetes usando T
 
 ---
 
-## Estrutura do projeto
-
-nginx-terraform-docker-k8s-helm-cd-actions/
-├── terraform/
-│ └── main.tf # Definição do provider, namespace e helm_release
-├── helm/
-│ └── nginx-chart/ # Chart Helm do Nginx com templates e values.yaml
-├── .github/
-│ └── workflows/
-│ └── cd.yaml # Workflow GitHub Actions que executa todo o deploy
-├── README.md # Documentação do projeto
-
----
-
 ## Como funciona o deploy no GitHub Actions
 
 - A cada push para a branch `main`, o workflow é disparado.
