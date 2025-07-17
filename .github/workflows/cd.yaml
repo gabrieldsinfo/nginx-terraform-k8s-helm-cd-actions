@@ -33,21 +33,18 @@ jobs:
         working-directory: ./terraform
         env:
           KUBECONFIG: ${{ env.KUBECONFIG }}
-          TF_VAR_kubeconfig_path: ${{ env.KUBECONFIG }}
         run: terraform init
 
       - name: Validar Terraform
         working-directory: ./terraform
         env:
           KUBECONFIG: ${{ env.KUBECONFIG }}
-          TF_VAR_kubeconfig_path: ${{ env.KUBECONFIG }}
         run: terraform validate
 
       - name: Aplicar Terraform
         working-directory: ./terraform
         env:
           KUBECONFIG: ${{ env.KUBECONFIG }}
-          TF_VAR_kubeconfig_path: ${{ env.KUBECONFIG }}
         run: terraform apply -auto-approve
 
       - name: Verificar recursos no cluster
