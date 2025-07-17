@@ -1,4 +1,4 @@
-name: IAC - Terraform + Helm
+name: CD - Terraform + Helm
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  iac:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,6 +17,9 @@ jobs:
         run: |
           kind create cluster --name dev --wait 60s
           kubectl cluster-info
+
+      - name: Set KUBECONFIG env var
+        run: echo "KUBECONFIG=$(kind get kubeconfig-path --name=dev)" >> $GITHUB_ENV
 
       - name: Instalar Helm
         uses: azure/setup-helm@v3
@@ -36,7 +39,9 @@ jobs:
 
       - name: Aplicar Terraform
         working-directory: ./terraform
+        env:
+          TF_VAR_kubeconfig_path: ${{ env.KUBECONFIG }}
         run: terraform apply -auto-approve
 
       - name: Verificar recursos no cluster
-        run: kubectl get all -n nginx-namespace
+        run: kubectl get all -n nginx-terraform
