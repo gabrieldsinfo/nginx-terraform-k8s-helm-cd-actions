@@ -20,8 +20,8 @@ jobs:
           kind create cluster --name dev --wait 60s
           kubectl cluster-info
 
-      - name: Set KUBECONFIG env var
-        run: echo "KUBECONFIG=$(kind get kubeconfig-path --name=dev)" >> $GITHUB_ENV
+      - name: Setar variável KUBECONFIG
+        run: echo "KUBECONFIG=${HOME}/.kube/config" >> $GITHUB_ENV
 
       - name: Instalar Helm
         uses: azure/setup-helm@v3
@@ -33,20 +33,14 @@ jobs:
 
       - name: Inicializar Terraform
         working-directory: ./terraform
-        env:
-          KUBECONFIG: ${{ env.KUBECONFIG }}
         run: terraform init
 
       - name: Validar Terraform
         working-directory: ./terraform
-        env:
-          KUBECONFIG: ${{ env.KUBECONFIG }}
         run: terraform validate
 
       - name: Aplicar Terraform
         working-directory: ./terraform
-        env:
-          KUBECONFIG: ${{ env.KUBECONFIG }}
         run: terraform apply -auto-approve
 
       - name: Verificar recursos no cluster
