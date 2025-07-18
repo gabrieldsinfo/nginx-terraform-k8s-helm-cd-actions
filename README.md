@@ -66,44 +66,44 @@ Para rodar o projeto localmente (fora do GitHub Actions), você precisa:
 
 ## Como usar (localmente)
 
-# 1. Clone este repositório
+1. Clone este repositório
 ```bash
 git clone https://github.com/gabrieldsinfo/nginx-terraform-k8s-helm-cd-actions.git
 cd nginx-terraform-k8s-helm-cd-actions
 ```
 
-# 2. Crie o cluster Kind (exemplo com nome)
+2. Crie o cluster Kind (exemplo com nome)
 ```bash
 kind create cluster --name meu-cluster
 ```
 
-# 3. Defina a variável de ambiente KUBECONFIG apontando para o arquivo padrão do Kind
+3. Defina a variável de ambiente KUBECONFIG apontando para o arquivo padrão do Kind
 ```bash
 export KUBECONFIG=~/.kube/config
 ```
 
-# 4. (Opcional) Liste os clusters Kind disponíveis
+4. (Opcional) Liste os clusters Kind disponíveis
 ```bash
 kubectl config get-contexts
 ```
 
-# 5. (Opcional) Veja qual contexto está ativo
+5. (Opcional) Veja qual contexto está ativo
 ```bash
 kubectl config current-context
 ```
 
-# 6. (Opcional) Mude para o contexto/cluster desejado (caso tenha mais de um cluster)
+6. (Opcional) Mude para o contexto/cluster desejado (caso tenha mais de um cluster)
 ```bash
 kubectl config use-context kind-meu-cluster
 ```
 
-# 7. Execute o Terraform para provisionar namespace e fazer deploy do Helm chart
+7. Execute o Terraform para provisionar namespace e fazer deploy do Helm chart
 ```bash
 terraform init
 terraform apply -auto-approve
 ```
 
-# 8. Verifique o deploy
+8. Verifique o deploy
 ```bash
 kubectl get pods -n nginx-terraform
 kubectl get svc -n nginx-terraform
